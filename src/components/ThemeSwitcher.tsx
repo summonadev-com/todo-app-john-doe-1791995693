@@ -1,28 +1,33 @@
-import { ACCENTS, useTheme } from '@/hooks/useTheme';
+import { ACCENTS, useTheme, type Accent, type Mode } from '@/hooks/useTheme';
+
+const selectClass =
+  'rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-sm capitalize text-slate-600 outline-none focus:border-indigo-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300';
 
 export function ThemeSwitcher() {
-  const { mode, accent, setAccent, toggleMode } = useTheme();
+  const { mode, accent, setAccent, setMode } = useTheme();
   return (
-    <div className="flex items-center gap-3">
-      <div className="flex gap-1.5">
-        {ACCENTS.map((a) => (
-          <button
-            key={a.id}
-            onClick={() => setAccent(a.id)}
-            aria-label={`${a.id} theme`}
-            style={{ backgroundColor: a.color }}
-            className={`h-5 w-5 rounded-full ring-offset-2 dark:ring-offset-slate-900 ${
-              accent === a.id ? 'ring-2 ring-slate-400' : ''
-            }`}
-          />
-        ))}
-      </div>
-      <button
-        onClick={toggleMode}
-        className="rounded-lg border border-slate-300 px-2.5 py-1 text-sm text-slate-600 hover:bg-slate-100 dark:border-slate-600 dark:text-slate-300 dark:hover:bg-slate-800"
+    <div className="flex items-center gap-2">
+      <select
+        value={mode}
+        onChange={(e) => setMode(e.target.value as Mode)}
+        aria-label="Mode"
+        className={selectClass}
       >
-        {mode === 'dark' ? '☀️ Light' : '🌙 Dark'}
-      </button>
+        <option value="light">Light</option>
+        <option value="dark">Dark</option>
+      </select>
+      <select
+        value={accent}
+        onChange={(e) => setAccent(e.target.value as Accent)}
+        aria-label="Accent color"
+        className={selectClass}
+      >
+        {ACCENTS.map((a) => (
+          <option key={a.id} value={a.id}>
+            {a.id}
+          </option>
+        ))}
+      </select>
     </div>
   );
 }

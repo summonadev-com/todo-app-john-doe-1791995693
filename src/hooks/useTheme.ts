@@ -39,6 +39,6 @@ export function useTheme() {
     mode,
     accent,
     setAccent,
-    toggleMode: () => setMode((m) => (m === 'dark' ? 'light' : 'dark')),
+    setMode,
   };
 }
