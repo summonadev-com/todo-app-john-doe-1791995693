@@ -1,14 +1,41 @@
 import { useEffect, useState } from 'react';
 import type { Todo } from '@/types/todo';
 
-const KEY = 'todos-v1';
+const KEY = 'todos-v2';
+
+function dayOffset(n: number): string {
+  const d = new Date();
+  d.setDate(d.getDate() + n);
+  const m = String(d.getMonth() + 1).padStart(2, '0');
+  const day = String(d.getDate()).padStart(2, '0');
+  return `${d.getFullYear()}-${m}-${day}`;
+}
+
+function defaults(): Todo[] {
+  const now = Date.now();
+  const items: [string, string | null, boolean][] = [
+    ['Welcome! Tick me to mark a task done', null, false],
+    ['Pay electricity bill', dayOffset(-1), false],
+    ['Buy groceries', dayOffset(0), false],
+    ['Call mom', dayOffset(1), false],
+    ['Plan weekend trip', dayOffset(4), false],
+    ['Set up my todo app', null, true],
+  ];
+  return items.map(([title, due, done], i) => ({
+    id: crypto.randomUUID(),
+    title,
+    done,
+    due,
+    createdAt: now - i * 1000,
+  }));
+}
 
 function load(): Todo[] {
   try {
     const raw = localStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as Todo[]) : [];
+    return raw ? (JSON.parse(raw) as Todo[]) : defaults();
   } catch {
-    return [];
+    return defaults();
   }
 }
 
