@@ -1,5 +1,5 @@
 ---
-status: pending
+status: implemented
 title: Personal todo app with due dates
 ---
 
