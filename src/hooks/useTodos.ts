@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import type { Todo } from '@/types/todo';
 
-const KEY = 'todos-v2';
+const KEY = 'todos-v3';
 
 function dayOffset(n: number): string {
   const d = new Date();
