@@ -23,11 +23,11 @@ export function TodoItem({ todo, onToggle, onEdit, onRemove }: Props) {
   const badge =
     todo.due && !todo.done
       ? isOverdue(todo.due)
-        ? 'bg-red-100 text-red-700'
+        ? 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300'
         : isToday(todo.due)
-          ? 'bg-amber-100 text-amber-700'
-          : 'bg-slate-100 text-slate-600'
-      : 'bg-slate-100 text-slate-400';
+          ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
+          : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300'
+      : 'bg-slate-100 text-slate-400 dark:bg-slate-700 dark:text-slate-500';
 
   return (
     <li className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2.5">
@@ -50,12 +50,12 @@ export function TodoItem({ todo, onToggle, onEdit, onRemove }: Props) {
               setEditing(false);
             }
           }}
-          className="flex-1 rounded border border-indigo-400 px-2 py-1 outline-none"
+          className="flex-1 rounded border border-indigo-400 bg-transparent px-2 py-1 outline-none dark:text-slate-100"
         />
       ) : (
         <span
           onDoubleClick={() => setEditing(true)}
-          className={`flex-1 break-words ${todo.done ? 'text-slate-400 line-through' : 'text-slate-800'}`}
+          className={`flex-1 break-words ${todo.done ? 'text-slate-400 line-through dark:text-slate-500' : 'text-slate-800 dark:text-slate-100'}`}
         >
           {todo.title}
         </span>
