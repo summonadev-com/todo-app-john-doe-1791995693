@@ -26,7 +26,7 @@ export function TodoItem({ todo, onToggle, onEdit, onRemove }: Props) {
         ? 'bg-red-100 text-red-700 dark:bg-red-950 dark:text-red-300'
         : isToday(todo.due)
           ? 'bg-amber-100 text-amber-700 dark:bg-amber-950 dark:text-amber-300'
-          : 'bg-slate-100 text-slate-600 dark:bg-slate-700 dark:text-slate-300'
+          : 'bg-indigo-100 text-indigo-700 dark:bg-slate-700 dark:text-indigo-300'
       : 'bg-slate-100 text-slate-400 dark:bg-slate-700 dark:text-slate-500';
 
   return (
@@ -67,7 +67,7 @@ export function TodoItem({ todo, onToggle, onEdit, onRemove }: Props) {
       )}
       <button
         onClick={() => setEditing(true)}
-        className="text-sm text-slate-400 hover:text-indigo-600"
+        className="text-sm text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400"
       >
         Edit
       </button>
