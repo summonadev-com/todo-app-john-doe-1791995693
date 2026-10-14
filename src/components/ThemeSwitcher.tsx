@@ -1,33 +1,26 @@
-import { ACCENTS, useTheme, type Accent, type Mode } from '@/hooks/useTheme';
+import { ACCENTS, useTheme } from '@/hooks/useTheme';
+import { Dropdown } from '@/components/Dropdown';
 
-const selectClass =
-  'rounded-lg border border-slate-300 bg-white px-2.5 py-1 text-sm capitalize text-slate-600 outline-none focus:border-indigo-500 dark:border-slate-600 dark:bg-slate-800 dark:text-slate-300';
+const MODES = [
+  { value: 'light' as const, label: 'Light' },
+  { value: 'dark' as const, label: 'Dark' },
+];
 
 export function ThemeSwitcher() {
   const { mode, accent, setAccent, setMode } = useTheme();
   return (
     <div className="flex items-center gap-2">
-      <select
-        value={mode}
-        onChange={(e) => setMode(e.target.value as Mode)}
-        aria-label="Mode"
-        className={selectClass}
-      >
-        <option value="light">Light</option>
-        <option value="dark">Dark</option>
-      </select>
-      <select
+      <Dropdown label="Mode" value={mode} options={MODES} onChange={setMode} />
+      <Dropdown
+        label="Accent color"
         value={accent}
-        onChange={(e) => setAccent(e.target.value as Accent)}
-        aria-label="Accent color"
-        className={selectClass}
-      >
-        {ACCENTS.map((a) => (
-          <option key={a.id} value={a.id}>
-            {a.id}
-          </option>
-        ))}
-      </select>
+        options={ACCENTS.map((a) => ({
+          value: a.id,
+          label: a.id.charAt(0).toUpperCase() + a.id.slice(1),
+          swatch: a.color,
+        }))}
+        onChange={setAccent}
+      />
     </div>
   );
 }
