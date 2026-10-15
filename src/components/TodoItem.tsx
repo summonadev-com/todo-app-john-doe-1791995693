@@ -30,7 +30,7 @@ export function TodoItem({ todo, onToggle, onEdit, onRemove }: Props) {
       : 'bg-slate-100 text-slate-400 dark:bg-slate-700 dark:text-slate-500';
 
   return (
-    <li className="flex items-center gap-3 rounded-lg border border-indigo-100 bg-white px-3 py-2.5 shadow-sm dark:border-slate-700 dark:bg-slate-800">
+    <li className="flex items-center gap-3 rounded-lg border border-slate-200 bg-white px-3 py-2.5">
       <input
         type="checkbox"
         checked={todo.done}
