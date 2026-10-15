@@ -67,7 +67,7 @@ export function TodoItem({ todo, onToggle, onEdit, onRemove }: Props) {
       )}
       <button
         onClick={() => setEditing(true)}
-        className="text-sm text-slate-400 hover:text-indigo-600"
+        className="text-sm text-slate-400 hover:text-indigo-600 dark:hover:text-indigo-400"
       >
         Edit
       </button>
