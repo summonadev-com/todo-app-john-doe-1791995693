@@ -10,7 +10,7 @@ type Props = {
 
 export function TodoList({ todos, ...handlers }: Props) {
   if (todos.length === 0) {
-    return <p className="py-8 text-center text-slate-400">Nothing to do yet. Add your first task above.</p>;
+    return <p className="py-8 text-center text-slate-400 dark:text-slate-500">Nothing to do yet. Add your first task above.</p>;
   }
   const sorted = [...todos].sort((a, b) => {
     if (a.done !== b.done) return a.done ? 1 : -1;
